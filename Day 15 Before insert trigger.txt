@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER `emp_bit_BEFORE_INSERT` BEFORE INSERT ON `emp_bit` FOR EACH ROW BEGIN
+if new.working_hours<0 then set new.working_hours=abs(new.working_hours);
+end if;
+END

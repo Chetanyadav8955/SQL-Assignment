@@ -1,0 +1,12 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Getcustomerlevel`(cnn integer)
+BEGIN
+declare cl integer;
+
+select creditlimit into cl  from customers where customernumber=cnn;
+if cl>100000 then select "Platinum" as Message ;
+end if;
+if cl between 25000 and 100000 then select "Gold" as Message ;
+end if;
+if cl <25000 then select "Silver" as Message ;
+end if;
+END

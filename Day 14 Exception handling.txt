@@ -1,0 +1,14 @@
+ CREATE DEFINER=`root`@`localhost` PROCEDURE `DAY14`(empid integer,empname varchar(20),emailaddress varchar(100))
+BEGIN
+-- declaration begins here 
+declare continue handler for 1062
+begin 
+select "Error Occurred" as msg;
+end;
+declare continue handler for 1048
+begin 
+select "Error Occurred" as msg;
+end;
+-- procedure begins here
+insert into emp_eh values(empid,empname,emailaddress);
+END

@@ -1,0 +1,12 @@
+CREATE DEFINER=`root`@`localhost` FUNCTION `Age`(dob date) RETURNS varchar(50) CHARSET latin1
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+Declare years int;
+declare months int;
+declare age varchar(50);
+set years = timestampdiff(year ,dob,curdate());
+set months = timestampdiff(month,dob,curdate())-(years * 12);
+set age = concat(years,"Years",months,"Months");
+RETURN age;
+END

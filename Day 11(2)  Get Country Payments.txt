@@ -1,0 +1,15 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Get_Country_Payments`(year integer ,country varchar(200))
+BEGIN
+SELECT 
+    YEAR(p.paymentdate) AS years,
+    c.country AS countryy,
+    CONCAT(ROUND(SUM(p.amount / 1000), 0), 'K') AS Total_Amount
+FROM
+    customers AS c
+        JOIN
+    payments AS p ON c.customernumber = p.customernumber
+WHERE
+    YEAR(p.paymentdate) = year
+        AND c.country = country
+GROUP BY years , countryy;
+END
